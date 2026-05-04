@@ -1,0 +1,63 @@
+name: CI Tests
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  unit-tests:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Debug workflow context
+        run: |
+          echo "workflow_ref=${{ github.workflow_ref }}"
+          echo "sha=${{ github.sha }}"
+          echo "ref=${{ github.ref }}"
+          echo "run_id=${{ github.run_id }}"
+
+      - name: Debug workflow file content
+        run: |
+          echo "--- .github/workflows/ci-tests.yml ---"
+          sed -n '1,120p' .github/workflows/ci-tests.yml
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "25"
+          cache: maven
+
+      - name: Run unit tests
+        run: mvn -B -Dtest='!*IntegrationTest' test
+
+  integration-tests:
+    name: Integration Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Debug workflow context
+        run: |
+          echo "workflow_ref=${{ github.workflow_ref }}"
+          echo "sha=${{ github.sha }}"
+          echo "ref=${{ github.ref }}"
+          echo "run_id=${{ github.run_id }}"
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "25"
+          cache: maven
+
+      - name: Run integration tests
+        run: mvn -B -Dtest='*IntegrationTest' test
+

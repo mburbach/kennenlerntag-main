@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="VehicleManagerServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <module name="vehiclemanagerservice" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="org.steffim.vehiclemanagerservice.VehicleManagerServiceApplication" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
