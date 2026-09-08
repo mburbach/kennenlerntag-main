@@ -1,0 +1,312 @@
+:root {
+  --color-bg: #f5f6f8;
+  --color-surface: #ffffff;
+  --color-border: #e2e5ea;
+  --color-text: #1c2430;
+  --color-text-muted: #66708090;
+  --color-muted: #667080;
+  --color-accent: #1f5fa9;
+  --color-ready: #1a7f4b;
+  --color-blocked: #b04a12;
+  --color-error-bg: #fdf1f0;
+  --color-error-border: #f0c4c0;
+  --color-error-text: #9b2c20;
+  --radius: 8px;
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.app__nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 0 24px;
+  height: 56px;
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.app__brand {
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: 0.01em;
+}
+
+.app__link {
+  color: var(--color-muted);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 4px 0;
+  border-bottom: 2px solid transparent;
+}
+
+.app__link--active {
+  color: var(--color-accent);
+  border-bottom-color: var(--color-accent);
+}
+
+.app__main {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 32px 24px 64px;
+}
+
+.page__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.page__header h1 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.duration {
+  margin: 4px 0 0;
+  color: var(--color-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.duration--slow {
+  color: var(--color-blocked);
+}
+
+.duration__warning {
+  font-weight: 600;
+}
+
+.button {
+  flex-shrink: 0;
+  padding: 8px 16px;
+  font: inherit;
+  font-weight: 500;
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+.button:hover:not(:disabled) {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.button:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.filter {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.filter__search {
+  flex: 1 1 320px;
+  padding: 8px 12px;
+  font: inherit;
+  color: inherit;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+.filter__search:focus {
+  outline: 2px solid var(--color-accent);
+  outline-offset: -1px;
+}
+
+.filter__checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-muted);
+  cursor: pointer;
+  user-select: none;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+.vehicle-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.vehicle-table th,
+.vehicle-table td {
+  padding: 10px 16px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* Lange Namen (Fahrzeug, Typ, Person) duerfen umbrechen, damit nichts
+   abgeschnitten wird. Nur kurze, zusammengehoerende Werte bleiben einzeilig. */
+.cell--id,
+.cell--number,
+.vehicle-table .badge,
+.vehicle-table .status {
+  white-space: nowrap;
+}
+
+.vehicle-table th {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-muted);
+  background: #fafbfc;
+  position: sticky;
+  top: 0;
+}
+
+.vehicle-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.vehicle-table tbody tr:hover td {
+  background: #f8fafc;
+}
+
+.cell--id {
+  color: var(--color-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.cell--name {
+  font-weight: 500;
+}
+
+.cell--number {
+  font-variant-numeric: tabular-nums;
+}
+
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 500;
+  background: #eef1f5;
+  color: var(--color-muted);
+}
+
+.badge--public_transport {
+  background: #e8f0fb;
+  color: #1f5fa9;
+}
+
+.badge--cargo {
+  background: #fdf0e4;
+  color: #93531a;
+}
+
+.badge--service {
+  background: #eaf5ee;
+  color: #1a7f4b;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.status__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.status--ready {
+  color: var(--color-ready);
+}
+
+.status--blocked {
+  color: var(--color-blocked);
+}
+
+.state {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+.state--error {
+  background: var(--color-error-bg);
+  border-color: var(--color-error-border);
+  color: var(--color-error-text);
+}
+
+.state__title {
+  margin: 0;
+  font-weight: 600;
+}
+
+.state__body {
+  margin-top: 4px;
+  color: inherit;
+}
+
+.state__body p {
+  margin: 4px 0 0;
+}
+
+.state__spinner {
+  width: 16px;
+  height: 16px;
+  margin-top: 3px;
+  border: 2px solid var(--color-border);
+  border-top-color: var(--color-accent);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.empty {
+  padding: 24px;
+  color: var(--color-muted);
+  text-align: center;
+}
+
+code {
+  padding: 1px 5px;
+  background: #eef1f5;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
