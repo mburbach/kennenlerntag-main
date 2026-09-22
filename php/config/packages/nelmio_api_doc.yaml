@@ -1,0 +1,26 @@
+# Entspricht OpenApiConfig.java (springdoc)
+nelmio_api_doc:
+    html_config:
+        assets_mode: bundle
+    documentation:
+        info:
+            title: Vehicle Manager Service API
+            description: |
+                REST API zur Verwaltung von Fahrzeugen, Fahrzeugtypen und verantwortlichen Personen.
+
+                **Datenmodell:**
+                - `Person` – verantwortliche Person für einen Fahrzeugtyp
+                - `VehicleType` – Fahrzeugklasse (PUBLIC_TRANSPORT, CARGO, SERVICE)
+                - `Vehicle` – einzelnes Fahrzeug mit technischen Eigenschaften
+
+                **Testdaten:**
+                Beim Start werden automatisch 20 Fahrzeugtypen und 20 Fahrzeuge eingespielt.
+            version: 0.0.1-SNAPSHOT
+            contact:
+                name: Vehicle Manager Service
+        tags:
+            - name: vehicle
+              description: Operationen auf Fahrzeugen
+    areas:
+        path_patterns:
+            - ^/vehicle

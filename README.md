@@ -1,39 +1,33 @@
 # Vehicle Manager Service
 
-Kurzanleitung, um die Anwendung lokal mit PostgreSQL via Docker Compose zu starten.
+Der Service zur Verwaltung von Fahrzeugen liegt in zwei gleichwertigen Backend-Varianten vor. Beide
+bieten dieselbe REST-API auf Port `8080` und teilen sich das Frontend.
 
-## Voraussetzungen
+| Verzeichnis | Inhalt                                                        | Anleitung                                    |
+| ----------- | ------------------------------------------------------------- | -------------------------------------------- |
+| `java/`     | Backend mit Java 25, Spring Boot, JPA/Hibernate und Flyway    | [java/README.md](java/README.md)             |
+| `php/`      | Backend mit PHP 8.5, Symfony, Doctrine ORM und Migrations     | [php/README.md](php/README.md)               |
+| `frontend/` | Fahrzeug-Übersicht als React-Anwendung auf Port `5173`        | [frontend/README.md](frontend/README.md)     |
 
-- Java (`java.version=25`)
-- laufendes Docker
-- Port `5432` ist frei
+## Starten mit Docker Compose
 
-## 1) PostgreSQL mit Docker Compose starten
+Die `docker-compose.yml` im Wurzelverzeichnis startet Datenbank, Backend und Frontend. Welches
+Backend läuft, wählst du über das Profil:
 
-Nutze die `docker-compose.yml` um eine PostgreSQL-Datenbank zu starten.
+```bash
+docker compose --profile java up -d --build   # Java / Spring Boot
+docker compose --profile php  up -d --build   # PHP / Symfony
+```
 
-Die Anwendung nutzt aktuell diese DB-Werte aus `src/main/resources/application.properties`:
+Danach liefert http://localhost:8080/vehicles die Fahrzeuge als JSON, die Fahrzeug-Übersicht läuft
+unter http://localhost:5173.
 
-- URL: `jdbc:postgresql://localhost:5432/postgres?currentSchema=vehicle_manager`
-- User: `postgres`
-- Passwort: `admin`
+Beide Backends belegen Port `8080`, es läuft also immer nur eines. Vor dem Wechsel stoppst du die
+laufende Variante mit demselben Profil, z. B. `docker compose --profile java down`. Die Datenbanken
+der beiden Varianten sind getrennt (Java auf Port `5432`, PHP auf Port `5433`).
 
-## 2) Anwendung starten
+Wie du die Backends lokal ohne Container entwickelst und testest, steht in den jeweiligen
+Anleitungen.
 
-In ./run ist eine VehicleManagerServiceApplication.run.xml für IntelliJ hinterlegt.
-Active Profile ist aktuell noch leer, da noch keine Unterscheidungen zwischen Dev/Prod nötig sind.
-
-## 3) Optional: Tests ausführen
-
-Die Integration Tests bringen über Testcontainers automatisch eine temporäre PostgreSQL-Instanz mit, die unabhängig von
-der lokalen DB läuft. Es wird allerdings Docker auf dem Dev-Rechner benötigt, damit die Tests erfolgreich durchlaufen
-können.
-Hinweis: Die Integrationstests benötigen Docker.
-
-## Manuelles Testen
-
-Nach dem Start der Anwendung kannst du die Endpunkte auf http://localhost:8080/swagger-ui.html sehen und testen.
-
-`Da es für VehicleType noch keinen Controller gibt, er aber benötigt wird, um ein Vehicle zu erstellen, wird durch
-```afterMigrate.sql``` automatisch ein VehicleType in die DB eingefügt, damit du direkt loslegen kannst. Sofern der Type
-nicht manuell gelöscht wurde, hat er die Id 1.
+Die Aufgabenstellung steht in [AUFGABE.md](AUFGABE.md), die Tickets in `FLT-1042.md` und
+`FLT-1087.md`.

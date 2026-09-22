@@ -7,7 +7,7 @@ Vehicle Manager Service.
 ## Voraussetzungen
 
 - Node.js 20 oder neuer
-- laufender Vehicle Manager Service auf `http://localhost:8080` (siehe `../README.md`)
+- laufender Vehicle Manager Service auf `http://localhost:8080` (siehe `../java/README.md` bzw. `../php/README.md`)
 
 ## Starten
 

@@ -1,0 +1,10 @@
+# Gleiche Pfade wie springdoc im Java-Service
+app.swagger_ui:
+    path: /swagger-ui.html
+    methods: GET
+    defaults: { _controller: nelmio_api_doc.controller.swagger_ui }
+
+app.swagger:
+    path: /v3/api-docs
+    methods: GET
+    defaults: { _controller: nelmio_api_doc.controller.swagger }

@@ -1,13 +1,9 @@
 # Technische Aufgabe – Vehicle Manager Service
 
-**Zeitrahmen:** ca. 30–45 Minuten
-
----
-
 ## Kontext
 
-Vor dir liegt ein laufender Spring-Boot-Service zur Verwaltung von Fahrzeugen.
-Der Service ist bereits funktionsfähig und mit Testdaten befüllt (20 Fahrzeuge, 5 Typen, 5 Personen).
+Vor dir liegt ein laufender Spring-Boot-Service / PHP Service zur Verwaltung von Fahrzeugen.
+Der Service ist bereits funktionsfähig und mit Testdaten befüllt (20 Fahrzeuge, 20 Fahrzeugtypen, 5 Personen).
 
 Aus dem Fachbereich (Flotten-Disposition) kam folgende Rückmeldung per Mail:
 
@@ -16,6 +12,9 @@ Aus dem Fachbereich (Flotten-Disposition) kam folgende Rückmeldung per Mail:
 > gefühlt ewig. Bei unseren anderen, kleineren Kunden merkt man davon nichts. Könnt ihr euch das mal anschauen?
 > Wir wollen in den nächsten Monaten noch weitere große Flottenkunden gewinnen, und das darf dann nicht
 > schlimmer werden."
+
+Der Product Owner hat daraus das Ticket `FLT-1042.md` geschrieben, das im Wurzelverzeichnis
+dieses Repositories liegt. Es beschreibt dieselbe Meldung noch einmal aus Produktsicht.
 
 Starte die Anwendung lokal (Anleitung in `README.md`).
 
@@ -55,9 +54,21 @@ Zeige, dass deine Lösung das Problem tatsächlich behebt – z. B. anhand von L
 - Gibt es im Code weitere Stellen mit einem ähnlichen Muster, die du (noch) nicht angefasst hast? Wie würdest
   du priorisieren, was jetzt behoben wird und was nicht?
 
+### 5. Refinement (im Gespräch)
+
+Unabhängig vom Thema oben liegt im Wurzelverzeichnis die Story `FLT-1087.md`. Sie soll demnächst in
+einen Sprint.
+
+- Was brauchst du, bevor du diese Story schätzen und umsetzen könntest?
+- Welche Fragen würdest du dem Product Owner stellen, und welche davon würdest du vor der Schätzung
+  geklärt haben wollen?
+- Wie würdest du die Story schneiden?
+
 ---
 
 ## Hinweise
 
-- Du darfst bestehenden Code anpassen, aber keine externen Bibliotheken hinzufügen.
-- Fragen zum Setup oder zur Aufgabenstellung sind ausdrücklich erlaubt – wie im echten Berufsalltag auch.
+- Du darfst bestehenden Code anpassen, aber keine externen Bibliotheken hinzufügen. Das gilt für
+  Backend und Frontend.
+- Fragen zum Setup oder zur Aufgabenstellung sind ausdrücklich erlaubt wie im echten Berufsalltag auch.
+- Ebenfalls die Verwendung üblicher Hilfsmittel wie Suchmaschinen, Dokumentation und KI.
