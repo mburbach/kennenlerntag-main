@@ -121,4 +121,21 @@ class VehicleControllerIntegrationTest {
             tuple(vehicle1.getName(), vehicle1.getVehicleType().getId()),
             tuple(vehicle2.getName(), vehicle2.getVehicleType().getId()));
   }
+
+  @Test
+  void shouldMarkVehicleInWorkshop() throws Exception {
+    Vehicle vehicle = testModelUtil.saveEntity(testModelUtil.createVehicleEntity());
+
+    MvcResult result =
+        mockMvc
+            .perform(
+                post("/vehicle/" + vehicle.getId() + "/workshop")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content("{\"reason\":\"Inspektion\",\"plannedReturn\":\"2026-12-01T10:00:00\"}"))
+            .andExpect(status().isOk())
+            .andReturn();
+
+    VehicleResult vehicleResult = testModelUtil.getResult(result, VehicleResult.class);
+    assertThat(vehicleResult.isInWorkshop()).isTrue();
+  }
 }
