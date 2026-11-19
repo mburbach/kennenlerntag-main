@@ -5,6 +5,8 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.*;
 
 @Entity
@@ -53,5 +55,9 @@ public class Vehicle {
     @Positive
     @Column(name = "max_speed", nullable = false)
     private int maxSpeed; // in km/h
+
+    @OneToMany(mappedBy = "vehicle")
+    @Builder.Default
+    private List<WorkshopStay> workshopStays = new ArrayList<>();
 
 }

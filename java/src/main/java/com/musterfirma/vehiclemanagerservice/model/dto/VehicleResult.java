@@ -32,4 +32,8 @@ public class VehicleResult {
 
     private int maxSpeed;
 
+    private boolean inWorkshop;
+
+    private WorkshopStayResult lastWorkshopStay;
+
 }
